@@ -2,6 +2,7 @@ import { AnalysisResult } from "@/types";
 import { IssueCard } from "./IssueCard";
 import { Shield, ShieldAlert, ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
+import { Badge } from "@/components/ui/badge";
 
 export function Dashboard({ result }: { result: AnalysisResult }) {
   const getStatusDetails = (status: string) => {
@@ -23,6 +24,16 @@ export function Dashboard({ result }: { result: AnalysisResult }) {
 
   return (
     <div className="max-w-6xl mx-auto space-y-8 animate-in fade-in duration-700">
+      {result.mode === "demo" && (
+        <div className="flex items-center gap-2">
+          <Badge variant="secondary" className="bg-accent/20 text-accent border border-accent/30">
+            Demo mode
+          </Badge>
+          <span className="text-sm text-muted-foreground">
+            Sample AI vulnerability report for presentation
+          </span>
+        </div>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Score Ring Card */}
         <div className="col-span-1 md:col-span-1 bg-card border border-border rounded-xl p-8 flex flex-col items-center justify-center relative overflow-hidden">

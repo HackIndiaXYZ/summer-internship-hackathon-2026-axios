@@ -8,9 +8,10 @@ import { Button } from "@/components/ui/button"
 
 interface FinalCTAProps {
   onAnalyze: (repo: string) => void
+  onTryDemo?: () => void
 }
 
-export function FinalCTA({ onAnalyze }: FinalCTAProps) {
+export function FinalCTA({ onAnalyze, onTryDemo }: FinalCTAProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [repoUrl, setRepoUrl] = useState("")
@@ -72,6 +73,16 @@ export function FinalCTA({ onAnalyze }: FinalCTAProps) {
                 Analyze
                 <ArrowRight className="h-4 w-4 ml-1" />
               </Button>
+              {onTryDemo && (
+                <Button
+                  type="button"
+                  variant="ghost"
+                  onClick={onTryDemo}
+                  className="text-muted-foreground hover:text-primary text-sm"
+                >
+                  Try Demo
+                </Button>
+              )}
             </div>
           </div>
         </motion.form>

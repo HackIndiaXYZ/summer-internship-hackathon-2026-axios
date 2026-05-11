@@ -4,27 +4,26 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { Search, ArrowRight, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useRouter } from "next/navigation"
 
 interface HeroProps {
   onAnalyze: (repo: string) => void
+  onTryDemo: () => void
 }
 
-export function Hero(){
-  const router = useRouter()
+export function Hero({ onAnalyze, onTryDemo }: HeroProps) {
   const [repoUrl, setRepoUrl] = useState("")
   const demoRepo = "vigilix/test-vulnerable-repo"
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (repoUrl.trim()) {
-      router.push(`/analyze?repo=${encodeURIComponent(repoUrl)}`)
+    const trimmed = repoUrl.trim()
+    if (trimmed) {
+      onAnalyze(trimmed)
     }
   }
 
   const handleTryDemo = () => {
-    setRepoUrl(demoRepo)
-    router.push(`/analyze?repo=${encodeURIComponent(demoRepo)}`)
+    onTryDemo()
   }
 
   return (

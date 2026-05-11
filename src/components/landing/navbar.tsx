@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Shield, Menu, X } from "lucide-react"
+import { Shield, Menu, X, LogOut, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useApp } from "@/lib/store"
+import { useRouter } from "next/navigation"
 
 interface NavbarProps {
   onOpenAuth: (tab: "login" | "signup") => void
@@ -12,6 +14,8 @@ interface NavbarProps {
 export function Navbar({ onOpenAuth }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { user, isAuthenticated, logout } = useApp()
+  const router = useRouter()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +29,19 @@ export function Navbar({ onOpenAuth }: NavbarProps) {
     { label: "Documentation", href: "#" },
     { label: "Security", href: "#privacy" },
   ]
+
+  const handleLogoClick = () => {
+    if (isAuthenticated) {
+      router.push("/dashboard")
+    } else {
+      router.push("/")
+    }
+  }
+
+  const handleLogout = () => {
+    logout()
+    setMobileMenuOpen(false)
+  }
 
   return (
     <>
@@ -40,10 +57,10 @@ export function Navbar({ onOpenAuth }: NavbarProps) {
       >
         <nav className="mx-auto max-w-7xl px-6 py-4">
           <div className="flex items-center justify-between">
-            {/* Logo */}
             <motion.a
               href="#"
-              className="flex items-center gap-2.5 group"
+              onClick={(e) => { e.preventDefault(); handleLogoClick() }}
+              className="flex items-center gap-2.5 group cursor-pointer"
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
@@ -56,7 +73,6 @@ export function Navbar({ onOpenAuth }: NavbarProps) {
               </span>
             </motion.a>
 
-            {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => (
                 <motion.a
@@ -71,26 +87,44 @@ export function Navbar({ onOpenAuth }: NavbarProps) {
               ))}
             </div>
 
-            {/* Auth Buttons */}
             <div className="hidden md:flex items-center gap-3">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => onOpenAuth("login")}
-                className="text-muted-foreground hover:text-foreground"
-              >
-                Login
-              </Button>
-              <Button
-                size="sm"
-                onClick={() => onOpenAuth("signup")}
-                className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20"
-              >
-                Sign Up
-              </Button>
+              {isAuthenticated ? (
+                <>
+                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm">
+                    <User className="h-4 w-4" />
+                    <span>{user?.name}</span>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleLogout}
+                    className="text-muted-foreground hover:text-foreground"
+                  >
+                    <LogOut className="h-4 w-4 mr-1" />
+                    Logout
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => onOpenAuth("login")}
+                    className="text-muted-foreground hover:text-foreground"
+                  >
+                    Login
+                  </Button>
+                  <Button
+                    size="sm"
+                    onClick={() => onOpenAuth("signup")}
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20"
+                  >
+                    Sign Up
+                  </Button>
+                </>
+              )}
             </div>
 
-            {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden p-2 text-muted-foreground hover:text-foreground transition-colors"
@@ -101,7 +135,6 @@ export function Navbar({ onOpenAuth }: NavbarProps) {
         </nav>
       </motion.header>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -123,27 +156,47 @@ export function Navbar({ onOpenAuth }: NavbarProps) {
                 </a>
               ))}
               <div className="flex flex-col gap-2 pt-4 border-t border-border/50">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => {
-                    onOpenAuth("login")
-                    setMobileMenuOpen(false)
-                  }}
-                  className="justify-start"
-                >
-                  Login
-                </Button>
-                <Button
-                  size="sm"
-                  onClick={() => {
-                    onOpenAuth("signup")
-                    setMobileMenuOpen(false)
-                  }}
-                  className="bg-primary text-primary-foreground"
-                >
-                  Sign Up
-                </Button>
+                {isAuthenticated ? (
+                  <>
+                    <div className="flex items-center gap-2 px-3 py-2 text-sm text-primary">
+                      <User className="h-4 w-4" />
+                      <span>{user?.name}</span>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={handleLogout}
+                      className="justify-start"
+                    >
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Logout
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => {
+                        onOpenAuth("login")
+                        setMobileMenuOpen(false)
+                      }}
+                      className="justify-start"
+                    >
+                      Login
+                    </Button>
+                    <Button
+                      size="sm"
+                      onClick={() => {
+                        onOpenAuth("signup")
+                        setMobileMenuOpen(false)
+                      }}
+                      className="bg-primary text-primary-foreground"
+                    >
+                      Sign Up
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
           </motion.div>

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { AppProvider } from "@/lib/store";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AI-Assisted Repo Scanner",
-  description: "Privacy-First Security Insights",
+  title: "Vigilix AI - Code Security Analysis",
+  description: "AI-Powered Security Insights for Your Code",
 };
 
 export default function RootLayout({
@@ -23,13 +25,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // suppressHydrationWarning here tells React to ignore extension attributes
     <html lang="en" className="dark" suppressHydrationWarning>
       <body 
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background text-foreground flex flex-col antialiased`} 
         suppressHydrationWarning
       >
-        {children}
+        <AppProvider>
+          {children}
+          <Toaster />
+        </AppProvider>
       </body>
     </html>
   );

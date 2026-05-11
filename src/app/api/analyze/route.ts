@@ -15,13 +15,6 @@ export async function POST(req: Request) {
     }
 
     const repoInfo = parseGitHubUrl(url);
-    
-    // MOCK MODE: Demo fast path for guaranteed success during presentation
-    if (repoInfo && repoInfo.owner === "vigilix" && repoInfo.repo === "test-vulnerable-repo") {
-      // Simulate delay
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      return NextResponse.json(getMockData());
-    }
 
     if (!repoInfo) {
       return NextResponse.json({ error: "Invalid GitHub URL" }, { status: 400 });
@@ -72,57 +65,4 @@ export async function POST(req: Request) {
     console.error("API Analyze Error:", error);
     return NextResponse.json({ error: error.message || "Internal Server Error" }, { status: 500 });
   }
-}
-
-function getMockData(): AnalysisResult {
-  return {
-    score: 45,
-    status: "Not Production Ready",
-    scannedFiles: 14,
-    repository: "vigilix/test-vulnerable-repo",
-    issues: [
-      {
-        id: "mock-1",
-        type: "Hardcoded Secret",
-        title: "Hardcoded API Key Exposed",
-        file: "src/config/keys.js",
-        line: 12,
-        originalCode: 'const STRIPE_SECRET = "sk_live_51H...xyz";',
-        secureCode: 'const STRIPE_SECRET = process.env.STRIPE_SECRET_KEY;',
-        severity: "Critical",
-        explanation: "A live Stripe secret key is hardcoded into the source file. This allows attackers who gain access to the code to fully compromise your payment infrastructure.",
-        recommendation: "Move the key to environment variables (.env) and access it via process.env.",
-        aiInsight: "Generative AI models often hardcode keys in examples to keep tutorials simple. This is a common AI-generated shortcut that should never hit production.",
-        trustImpact: 25
-      },
-      {
-        id: "mock-2",
-        type: "Dangerous Function",
-        title: "Usage of eval() detected",
-        file: "src/routes/api.js",
-        line: 45,
-        originalCode: 'const result = eval(req.body.dynamicQuery);',
-        secureCode: 'const result = executeSafeQuery(req.body.dynamicQuery); // Use a safe parser',
-        severity: "High",
-        explanation: "The eval() function executes arbitrary JavaScript from user input. This is a severe Remote Code Execution (RCE) vulnerability.",
-        recommendation: "Never use eval() on user input. Use safer alternatives like a dedicated query parser or JSON.parse for structured data.",
-        aiInsight: "AI assistants sometimes suggest eval() as a quick fix for parsing complex dynamic objects, ignoring the security implications.",
-        trustImpact: 15
-      },
-      {
-        id: "mock-3",
-        type: "AI Hallucination",
-        title: "Suspicious or Hallucinated Import",
-        file: "src/utils/crypto.ts",
-        line: 2,
-        originalCode: 'import { UltraHash } from "fake-crypto-lib";',
-        secureCode: 'import { createHash } from "crypto";',
-        severity: "Medium",
-        explanation: "The package 'fake-crypto-lib' does not exist in standard registries. This is likely an AI hallucination.",
-        recommendation: "Use the built-in Node.js 'crypto' module or a verified package like 'bcrypt' instead.",
-        aiInsight: "This is a classic AI hallucination where the model invents a plausible-sounding package name to satisfy a prompt's requirements.",
-        trustImpact: 10
-      }
-    ]
-  };
 }

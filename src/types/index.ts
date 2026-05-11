@@ -21,6 +21,7 @@ export interface AnalysisResult {
   issues: Issue[];
   scannedFiles: number;
   repository: string;
+  mode?: "demo" | "live";
 }
 
 export interface RepoDetails {

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { Navbar } from "@/components/landing/navbar"
 import { Hero } from "@/components/landing/hero"
 import { ProblemSection } from "@/components/landing/problem-section"
@@ -10,12 +10,26 @@ import { PrivacySection } from "@/components/landing/privacy-section"
 import { FinalCTA } from "@/components/landing/final-cta"
 import { Footer } from "@/components/landing/footer"
 import { AuthModal } from "@/components/landing/auth-modal"
+import { validateRepoUrl } from "@/lib/analysis-controller"
+import { useApp, writePendingLiveScan } from "@/lib/store"
+import { useRouter, useSearchParams } from "next/navigation"
+import { toast } from "@/components/ui/use-toast"
 
-
-export default function Home() {
+function HomeContent() {
   const [authModalOpen, setAuthModalOpen] = useState(false)
   const [authTab, setAuthTab] = useState<"login" | "signup">("login")
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const { isAuthenticated } = useApp()
+  const router = useRouter()
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    const requireAuth = searchParams.get("requireAuth")
+    if (requireAuth === "true") {
+      setAuthTab("signup")
+      setAuthModalOpen(true)
+      router.replace("/")
+    }
+  }, [searchParams, router])
 
   const handleOpenAuth = (tab: "login" | "signup") => {
     setAuthTab(tab)
@@ -23,39 +37,59 @@ export default function Home() {
   }
 
   const handleAnalyze = (repo: string) => {
-    // Check if user is authenticated (simulated)
+    const validation = validateRepoUrl(repo)
+    if (!validation.valid) {
+      toast({
+        variant: "destructive",
+        title: "Invalid repository",
+        description: validation.error,
+      })
+      return
+    }
+
+    writePendingLiveScan(repo)
+
     if (!isAuthenticated) {
-      // Open auth modal if not authenticated
       setAuthTab("signup")
       setAuthModalOpen(true)
-    } else {
-      // Proceed with analysis
-      console.log("Analyzing repository:", repo)
+      return
     }
+
+    router.push("/dashboard?run=live")
   }
 
-  const handleAuthClose = () => {
-    setAuthModalOpen(false)
-    // Simulate successful auth
-    setIsAuthenticated(true)
+  const handleTryDemo = () => {
+    router.push("/dashboard?run=demo")
   }
 
   return (
     <main className="relative min-h-screen bg-background overflow-x-hidden">
       <Navbar onOpenAuth={handleOpenAuth} />
-      <Hero onAnalyze={handleAnalyze} />
+      <Hero onAnalyze={handleAnalyze} onTryDemo={handleTryDemo} />
       <ProblemSection />
       <FeaturesSection />
       <HowItWorks />
       <PrivacySection />
-      <FinalCTA onAnalyze={handleAnalyze} />
+      <FinalCTA onAnalyze={handleAnalyze} onTryDemo={handleTryDemo} />
       <Footer />
 
       <AuthModal
         isOpen={authModalOpen}
-        onClose={handleAuthClose}
+        onClose={() => setAuthModalOpen(false)}
         initialTab={authTab}
       />
     </main>
+  )
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
+      </div>
+    }>
+      <HomeContent />
+    </Suspense>
   )
 }
