@@ -31,12 +31,17 @@ import {
   ArrowRight,
 } from "lucide-react"
 
-/** Prevents duplicate demo runs when React Strict Mode remounts before `run` clears. */
+/** * Prevents duplicate demo runs when React Strict Mode remounts.
+ * Declared outside with 'let' so it can be modified.
+ */
 let demoRunQueryHandled = false
 
-function DashboardContent() {
+export function DashboardContent() {
+  // 1. Hooks & State (Must be inside the function)
+  const [mounted, setMounted] = useState(false)
   const searchParams = useSearchParams()
   const router = useRouter()
+  
   const {
     user,
     isAuthenticated,
@@ -52,6 +57,11 @@ function DashboardContent() {
   const [newRepoUrl, setNewRepoUrl] = useState("")
   const [selectedId, setSelectedId] = useState<string | null>(null)
 
+  // 2. Lifecycle & Memoized Values
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const selectedScan = useMemo(() => {
     if (selectedId) {
       return analysisHistory.find((h) => h.id === selectedId) ?? null
@@ -64,6 +74,7 @@ function DashboardContent() {
     setAuthModalOpen(true)
   }, [])
 
+  // 3. Scan Logic
   const runDemoScan = useCallback(async () => {
     setShowScanner(true)
     try {
@@ -101,6 +112,7 @@ function DashboardContent() {
 
   const run = searchParams.get("run")
 
+  // 4. Effects for handling URL params
   useEffect(() => {
     if (run !== "demo") {
       demoRunQueryHandled = false
@@ -136,6 +148,7 @@ function DashboardContent() {
     void runLiveScan(pending.repo)
   }, [isAuthenticated, run, runLiveScan])
 
+  // 5. Computed Stats
   const totalScans = analysisHistory.length
   const avgScore =
     totalScans > 0
@@ -240,7 +253,7 @@ function DashboardContent() {
                   <p className="text-xs text-muted-foreground mt-2">
                     {latest
                       ? `${latest.status} · ${latest.mode === "demo" ? "Demo" : "Live"}`
-                      : "Run a scan to populate metrics"}
+                      : mounted ? "Run a scan to populate metrics" : "Loading..."}
                   </p>
                 </motion.div>
               </div>
@@ -324,7 +337,7 @@ function DashboardContent() {
                           </span>
                         </div>
                         <p className="text-xs text-muted-foreground">
-                          {new Date(item.timestamp).toLocaleString()}
+                          {mounted ? new Date(item.timestamp).toLocaleString() : "Loading date..."}
                         </p>
                       </div>
                       <div className="flex items-center gap-4 shrink-0">
