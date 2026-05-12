@@ -36,16 +36,35 @@ const HEURISTICS = [
   }
 ];
 
-export function runStaticAnalysis(files: { path: string; content: string }[]): StaticAnalysisResult[] {
+export function runStaticAnalysis(
+  files: { path: string; content: string }[]
+): StaticAnalysisResult[] {
+
   const results: StaticAnalysisResult[] = [];
 
-  for (const file of files) {
+  const limitedFiles = files
+    .filter(file =>
+      file.path.endsWith(".ts") ||
+      file.path.endsWith(".tsx") ||
+      file.path.endsWith(".js") ||
+      file.path.endsWith(".jsx")
+    )
+    .slice(0, 5);
+
+  for (const file of limitedFiles) {
+
+    if (file.content.length > 15000) continue;
+
     const lines = file.content.split("\n");
+
     for (let i = 0; i < lines.length; i++) {
+
       const lineContent = lines[i];
-      
+
       for (const rule of HEURISTICS) {
+
         if (rule.regex.test(lineContent)) {
+
           results.push({
             file: file.path,
             line: i + 1,
@@ -53,6 +72,7 @@ export function runStaticAnalysis(files: { path: string; content: string }[]): S
             title: rule.title,
             originalCode: lineContent.trim(),
           });
+
         }
       }
     }
