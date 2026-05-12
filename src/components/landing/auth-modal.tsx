@@ -54,11 +54,9 @@ export function AuthModal({ isOpen, onClose, initialTab = "login" }: AuthModalPr
 
   useEffect(() => {
     // #region agent log
-    fetch('http://127.0.0.1:7708/ingest/456d8f43-94d0-4fe7-a952-1db9bb5def71',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'279f56'},body:JSON.stringify({sessionId:'279f56',runId:'initial',hypothesisId:'H1',location:'src/components/landing/auth-modal.tsx:56',message:'auth effect fired',data:{isAuthenticated,isOpen,initialTab},timestamp:Date.now()})}).catch(()=>{});
     // #endregion
     if (isAuthenticated) {
       // #region agent log
-      fetch('http://127.0.0.1:7708/ingest/456d8f43-94d0-4fe7-a952-1db9bb5def71',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'279f56'},body:JSON.stringify({sessionId:'279f56',runId:'initial',hypothesisId:'H1',location:'src/components/landing/auth-modal.tsx:58',message:'auth effect redirecting to dashboard',data:{isAuthenticated,isOpen},timestamp:Date.now()})}).catch(()=>{});
       // #endregion
       onClose()
       if (typeof window !== "undefined" && window.location.pathname !== "/dashboard") {

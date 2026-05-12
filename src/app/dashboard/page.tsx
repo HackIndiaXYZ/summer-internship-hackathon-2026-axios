@@ -232,7 +232,6 @@ export function DashboardContent() {
   const runLiveScan = useCallback(
     async (repo: string) => {
       // #region agent log
-      fetch('http://127.0.0.1:7708/ingest/456d8f43-94d0-4fe7-a952-1db9bb5def71',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'279f56'},body:JSON.stringify({sessionId:'279f56',runId:'initial',hypothesisId:'H5',location:'src/app/dashboard/page.tsx:234',message:'runLiveScan start',data:{repo},timestamp:Date.now()})}).catch(()=>{});
       // #endregion
       setShowScanner(true)
       try {
@@ -247,7 +246,6 @@ export function DashboardContent() {
         })
       } finally {
         // #region agent log
-        fetch('http://127.0.0.1:7708/ingest/456d8f43-94d0-4fe7-a952-1db9bb5def71',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'279f56'},body:JSON.stringify({sessionId:'279f56',runId:'initial',hypothesisId:'H5',location:'src/app/dashboard/page.tsx:246',message:'runLiveScan end',data:{repo},timestamp:Date.now()})}).catch(()=>{});
         // #endregion
         setShowScanner(false)
       }
@@ -259,7 +257,6 @@ export function DashboardContent() {
 
   useEffect(() => {
     // #region agent log
-    fetch('http://127.0.0.1:7708/ingest/456d8f43-94d0-4fe7-a952-1db9bb5def71',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'279f56'},body:JSON.stringify({sessionId:'279f56',runId:'initial',hypothesisId:'H2',location:'src/app/dashboard/page.tsx:254',message:'demo effect evaluated',data:{run,demoRunQueryHandled},timestamp:Date.now()})}).catch(()=>{});
     // #endregion
     if (run !== "demo") {
       demoRunQueryHandled = false
@@ -268,7 +265,6 @@ export function DashboardContent() {
     if (demoRunQueryHandled) return
     demoRunQueryHandled = true
     // #region agent log
-    fetch('http://127.0.0.1:7708/ingest/456d8f43-94d0-4fe7-a952-1db9bb5def71',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'279f56'},body:JSON.stringify({sessionId:'279f56',runId:'initial',hypothesisId:'H2',location:'src/app/dashboard/page.tsx:261',message:'demo effect running scan and replacing route',data:{run},timestamp:Date.now()})}).catch(()=>{});
     // #endregion
     clearPendingLiveScan()
     void (async () => {
@@ -279,26 +275,23 @@ export function DashboardContent() {
 
   useEffect(() => {
     // #region agent log
-    fetch('http://127.0.0.1:7708/ingest/456d8f43-94d0-4fe7-a952-1db9bb5def71',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'279f56'},body:JSON.stringify({sessionId:'279f56',runId:'initial',hypothesisId:'H3',location:'src/app/dashboard/page.tsx:268',message:'live effect evaluated',data:{run,isAuthenticated},timestamp:Date.now()})}).catch(()=>{});
     // #endregion
     if (run !== "live" || !isAuthenticated) return
     const pending = consumePendingLiveScan()
     // #region agent log
-    fetch('http://127.0.0.1:7708/ingest/456d8f43-94d0-4fe7-a952-1db9bb5def71',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'279f56'},body:JSON.stringify({sessionId:'279f56',runId:'initial',hypothesisId:'H3',location:'src/app/dashboard/page.tsx:270',message:'live effect consumed pending',data:{hasPending:!!pending,pendingRepo:pending?.repo ?? null},timestamp:Date.now()})}).catch(()=>{});
     // #endregion
     if (!pending) {
-      if (typeof window !== "undefined" && window.location.pathname !== "/dashboard") { if (typeof window !== "undefined" && window.location.pathname !== "/dashboard") { router.replace("/dashboard", { scroll: false }) } }
+      if (typeof window !== "undefined" && window.location.pathname !== "/dashboard") { router.replace("/dashboard", { scroll: false }) }
       return
     }
     void (async () => {
       await runLiveScan(pending.repo)
-      if (typeof window !== "undefined" && window.location.pathname !== "/dashboard") { if (typeof window !== "undefined" && window.location.pathname !== "/dashboard") { router.replace("/dashboard", { scroll: false }) } }
+      if (typeof window !== "undefined" && window.location.pathname !== "/dashboard") { router.replace("/dashboard", { scroll: false }) }
     })()
   }, [run, isAuthenticated, router, runLiveScan])
 
   useEffect(() => {
     // #region agent log
-    fetch('http://127.0.0.1:7708/ingest/456d8f43-94d0-4fe7-a952-1db9bb5def71',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'279f56'},body:JSON.stringify({sessionId:'279f56',runId:'initial',hypothesisId:'H4',location:'src/app/dashboard/page.tsx:281',message:'pending replay effect evaluated',data:{run,isAuthenticated,hasPending:!!peekPendingLiveScan()},timestamp:Date.now()})}).catch(()=>{});
     // #endregion
     if (!isAuthenticated || run === "live") return
     if (!peekPendingLiveScan()) return
@@ -341,8 +334,15 @@ export function DashboardContent() {
   }, [analysisHistory, vaultQuery])
 
   const handleLogoClick = () => {
-    if (isAuthenticated) router.push("/dashboard")
-    else router.push("/")
+    if (isAuthenticated) {
+      if (typeof window !== "undefined" && window.location.pathname !== "/dashboard") {
+        router.push("/dashboard")
+      }
+    } else {
+      if (typeof window !== "undefined" && window.location.pathname !== "/") {
+        router.push("/")
+      }
+    }
   }
 
   const handleNewRepoAnalyze = (e: React.FormEvent) => {
