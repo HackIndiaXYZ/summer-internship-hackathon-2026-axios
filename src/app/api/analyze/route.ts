@@ -61,8 +61,16 @@ export async function POST(req: Request) {
 
     return NextResponse.json(responseData);
 
-  } catch (error: any) {
-    console.error("API Analyze Error:", error);
-    return NextResponse.json({ error: error.message || "Internal Server Error" }, { status: 500 });
-  }
+  } catch (error) {
+  console.error("Analyze API Error:", error);
+
+  return Response.json(
+    {
+      success: false,
+      error: "Analysis failed",
+      details: String(error),
+    },
+    { status: 500 }
+  );
+}
 }

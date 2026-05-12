@@ -278,12 +278,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url: repoUrl }),
       })
-
       if (!response.ok) {
-        const error = await response.json()
-        throw new Error(error.error || "Analysis failed")
-      }
-
+        const text = await response.text()
+        throw new Error(text)
+}
+      const data = await response.json()
       const parsed: AnalysisResult = await response.json()
       const result: AnalysisResult = { ...parsed, mode: "live" }
       return addToHistory(result, "live")
