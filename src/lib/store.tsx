@@ -214,6 +214,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
+    // #region agent log
+    fetch('http://127.0.0.1:7708/ingest/456d8f43-94d0-4fe7-a952-1db9bb5def71',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'279f56'},body:JSON.stringify({sessionId:'279f56',runId:'initial',hypothesisId:'H6',location:'src/lib/store.tsx:216',message:'store hydration effect start',data:{hasUser:!!user},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
     const stored = localStorage.getItem("vigilix_user")
     if (stored) {
       try {
@@ -223,6 +226,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const login = (name: string, email: string, rememberMe: boolean) => {
+    // #region agent log
+    fetch('http://127.0.0.1:7708/ingest/456d8f43-94d0-4fe7-a952-1db9bb5def71',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'279f56'},body:JSON.stringify({sessionId:'279f56',runId:'initial',hypothesisId:'H6',location:'src/lib/store.tsx:225',message:'login called',data:{email,rememberMe},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
     const userData = { name, email, isLoggedIn: true }
     setUser(userData)
     if (rememberMe) {
@@ -236,7 +242,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setUser(null)
     localStorage.removeItem("vigilix_user")
     sessionStorage.removeItem("vigilix_user")
-    router.push("/")
+    if (typeof window !== "undefined" && window.location.pathname !== "/") {
+      router.push("/")
+    }
   }
 
   const addToHistory = (result: AnalysisResult, mode: "demo" | "live"): AnalysisHistoryItem => {

@@ -32,9 +32,13 @@ export function Navbar({ onOpenAuth }: NavbarProps) {
 
   const handleLogoClick = () => {
     if (isAuthenticated) {
-      router.push("/dashboard")
+      if (typeof window !== "undefined" && window.location.pathname !== "/dashboard") {
+        router.push("/dashboard")
+      }
     } else {
-      router.push("/")
+      if (typeof window !== "undefined" && window.location.pathname !== "/") {
+        router.push("/")
+      }
     }
   }
 

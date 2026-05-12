@@ -287,12 +287,12 @@ export function DashboardContent() {
     fetch('http://127.0.0.1:7708/ingest/456d8f43-94d0-4fe7-a952-1db9bb5def71',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'279f56'},body:JSON.stringify({sessionId:'279f56',runId:'initial',hypothesisId:'H3',location:'src/app/dashboard/page.tsx:270',message:'live effect consumed pending',data:{hasPending:!!pending,pendingRepo:pending?.repo ?? null},timestamp:Date.now()})}).catch(()=>{});
     // #endregion
     if (!pending) {
-      if (typeof window !== "undefined" && window.location.pathname !== "/dashboard") { if (typeof window !== "undefined" && window.location.pathname !== "/dashboard") { router.replace("/dashboard", { scroll: false }) } }
+      if (typeof window !== "undefined" && window.location.pathname !== "/dashboard") { router.replace("/dashboard", { scroll: false }) }
       return
     }
     void (async () => {
       await runLiveScan(pending.repo)
-      if (typeof window !== "undefined" && window.location.pathname !== "/dashboard") { if (typeof window !== "undefined" && window.location.pathname !== "/dashboard") { router.replace("/dashboard", { scroll: false }) } }
+      if (typeof window !== "undefined" && window.location.pathname !== "/dashboard") { router.replace("/dashboard", { scroll: false }) }
     })()
   }, [run, isAuthenticated, router, runLiveScan])
 
@@ -426,7 +426,7 @@ export function DashboardContent() {
           </div>
         )}
 
-        <aside suppressHydrationWarning className="hidden md:flex w-56 shrink-0 border-r border-border bg-card/30 flex-col fixed left-0 top-0 bottom-0 z-30">
+        <aside className="hidden md:flex w-56 shrink-0 border-r border-border bg-card/30 flex-col fixed left-0 top-0 bottom-0 z-30">
           <div className="p-4 border-b border-border/60">
             <button
               type="button"
@@ -956,5 +956,4 @@ export default function DashboardPage() {
     </Suspense>
   )
 }
-
 
