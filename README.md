@@ -15,19 +15,20 @@
 
 *Scan. Score. Ship with confidence.*
 
-<br/>
+---
 
-[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Vigilix_AI-0f172a?style=for-the-badge&logo=vercel&logoColor=white)](https://your-deployment-url.vercel.app)
-[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=nextdotjs)](https://nextjs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org)
-[![Gemini AI](https://img.shields.io/badge/Gemini_AI-Powered-4285F4?style=for-the-badge&logo=google)](https://deepmind.google/technologies/gemini/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge)](./LICENSE)
+## 🌐 Project Links
 
-<br/>
+* 🔗 **Live Application**
+  [https://dhruva-1.vercel.app](https://dhruva-1.vercel.app)
 
-**[🌐 Live Website](#)** · **[📖 How It Works](#how-it-works)** · **[🎬 Demo Flow](#demo-flow)**
+* 📦 **GitHub Repository**
+  [https://github.com/Smith24298/Dhruva_1](https://github.com/Smith24298/Dhruva_1)
 
-<br/>
+* 🎥 **Demo Video**
+  [https://drive.google.com/drive/u/3/folders/1qN1wug7DRHcejm59HDSUbh-GaxzBmIXk](https://drive.google.com/drive/u/3/folders/1qN1wug7DRHcejm59HDSUbh-GaxzBmIXk)
+
+---
 
 </div>
 
