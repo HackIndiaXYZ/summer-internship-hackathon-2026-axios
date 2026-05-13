@@ -3,14 +3,14 @@
 <br/>
 
 ```
-██╗   ██╗██╗ ██████╗ ██╗██╗     ██╗██╗  ██╗
-██║   ██║██║██╔════╝ ██║██║     ██║╚██╗██╔╝
-██║   ██║██║██║  ███╗██║██║     ██║ ╚███╔╝
-╚██╗ ██╔╝██║██║   ██║██║██║     ██║ ██╔██╗
- ╚████╔╝ ██║╚██████╔╝██║███████╗██║██╔╝ ██╗
-  ╚═══╝  ╚═╝ ╚═════╝ ╚═╝╚══════╝╚═╝╚═╝  ╚═╝
-```
+██╗   ██╗██╗ ██████╗ ██╗██╗     ██╗██╗  ██╗      █████╗ ██╗
+██║   ██║██║██╔════╝ ██║██║     ██║╚██╗██╔╝     ██╔══██╗██║
+██║   ██║██║██║  ███╗██║██║     ██║ ╚███╔╝      ███████║██║
+╚██╗ ██╔╝██║██║   ██║██║██║     ██║ ██╔██╗      ██╔══██║██║
+ ╚████╔╝ ██║╚██████╔╝██║███████╗██║██╔╝ ██╗     ██║  ██║██║
+  ╚═══╝  ╚═╝ ╚═════╝ ╚═╝╚══════╝╚═╝╚═╝  ╚═╝     ╚═╝  ╚═╝╚═╝
 
+```
 </div>
 
 > **Trust infrastructure for AI-assisted development.**
@@ -224,7 +224,7 @@ Your code stays yours. Vigilix AI processes it ephemerally and returns only the 
 
 ---
 
-## ⚙️Technical Deep Dive :
+## ⚙️Technical Deep Dive 
 Vigilix AI operates as a stateless, three-phase analysis pipeline designed to bridge the gap between fast static analysis and slow security audits.
 
 Selective In-Memory Fetching: Uses the GitHub Trees API to selectively fetch source code into RAM. No local cloning, ensuring zero persistence.
@@ -233,7 +233,7 @@ Multi-Pass Heuristic Engine: Uses optimized regex patterns to detect hardcoded s
 
 LLM Enrichment: Raw flags are passed to Gemini 2.5 Flash Lite with a strict JSON Response Schema to generate human-readable "Why" explanations and secure rewrites.
 
-## ⚖️ Constraints & Scope:
+## ⚖️ Constraints & Scope
 
 Analysis Depth: Optimized for high-signal pattern matching; deep AST parsing is currently on the roadmap.
 
@@ -314,7 +314,7 @@ GITHUB_TOKEN=your_github_personal_access_token_here
 
 ---
 
-## ⏳ Future Vision & Roadmap : 
+## ⏳ Future Vision & Roadmap 
 
 Vigilix AI is designed to grow beyond a hackathon prototype into a serious developer security platform.
 - [ ] **Deep AST Analysis** — Transition from regex heuristics to abstract syntax tree parsing for context-aware vulnerability detection.
