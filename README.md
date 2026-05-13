@@ -22,7 +22,7 @@
 * 🔗 **Live Application** :
   [https://vigilix-ai.vercel.app/](https://vigilix-ai.vercel.app/)
 * 🎬 **Demo Video** :
-  [https://vigilix-ai.vercel.app/](https://vigilix-ai.vercel.app/)
+  [Click here to watch the demo!](https://youtu.be/NaViAgM2ebc?si=uUnbxmqlOmDQWM4T)
     
 
 ---
