@@ -1,4 +1,4 @@
-<div align="center">
+<img width="982" height="898" alt="image" src="https://github.com/user-attachments/assets/65e27ecb-8557-4c20-9dd2-cb8cce99d4ec" /><div align="center">
 
 <br/>
 
@@ -111,7 +111,8 @@ Paste any public GitHub repository URL. No tokens, no integrations, no configura
 
 ## Screenshots
 
-> 📸 _Screenshots and a live demo GIF will be added here._
+> <img width="982" height="898" alt="image" src="https://github.com/user-attachments/assets/801c4e7c-c033-4451-9080-41f79e51b599" />
+
 
 <!--
 | Landing Page | Repository Scan | Trust Dashboard |
