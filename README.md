@@ -108,8 +108,6 @@ Repositories are fetched, analyzed in-memory, and immediately discarded. No sour
 Paste any public GitHub repository URL. No tokens, no integrations, no configuration files required.
 
 ---
-
-### 📸 Interface Tour
 ### 📸 Interface Tour
 
 <details>
