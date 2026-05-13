@@ -109,9 +109,63 @@ Paste any public GitHub repository URL. No tokens, no integrations, no configura
 
 ---
 
-## Screenshots
+### 📸 Interface Tour
+### 📸 Interface Tour
 
-> <img width="982" height="898" alt="image" src="https://github.com/user-attachments/assets/801c4e7c-c033-4451-9080-41f79e51b599" />
+<details>
+  <summary><b>1. Dashboard Overview — Trust Score & Trends</b></summary>
+  <br>
+  <p align="center">
+    <img src="C:\Users\Maharaj\Pictures\Screenshots\Screenshot 2026-05-13 233915.png" alt="Dashboard Overview" width="900">
+  </p>
+  <p align="center"><i>The command center featuring the 0–100 Trust Score, real-time summary cards, and security trend lines.</i></p>
+</details>
+
+<details>
+  <summary><b>2. Detailed Vulnerability Report — AI Insights</b></summary>
+  <br>
+  <p align="center">
+    <img src="C:\Users\Maharaj\Pictures\Screenshots\Screenshot 2026-05-13 234230.png" alt="Vulnerability Report" width="900">
+  </p>
+  <p align="center"><i>Deep-dive analysis of flagged issues, including severity ratings and Gemini-powered explanations of why the code is risky.</i></p>
+</details>
+
+<details>
+  <summary><b>3. Secure PDF Export — Professional Audit Reports</b></summary>
+  <br>
+  <p align="center">
+    <img src="C:\Users\Maharaj\Pictures\Screenshots\Screenshot 2026-05-13 234339.png" alt="PDF Exported Report" width="900">
+  </p>
+  <p align="center"><i>Generate professional, human-readable security audits in one click. Perfect for team reviews or deployment documentation.</i></p>
+</details>
+
+<details>
+  <summary><b>4. Smooth Authentication — Local & Secure Access</b></summary>
+  <br>
+  <p align="center">
+    <img src="your-animation-url.gif" alt="Auth Animation" width="900">
+  </p>
+  <p align="center"><i>A glimpse into the fluid, motion-designed authentication flow, ensuring secure access to your local Repo Vault.</i></p>
+</details>
+
+<details>
+  <summary><b>5. Repo Vault — Local Scan History</b></summary>
+  <br>
+  <p align="center">
+    <img src="your-image-url-3.png" alt="Repo Vault" width="900">
+  </p>
+  <p align="center"><i>Privacy-first local storage for all previous scans, allowing you to track security improvements across your projects.</i></p>
+</details>
+
+<details>
+  <summary><b>6. Vigilix in Action — Scanning Our Own Platform</b></summary>
+  <br>
+  <p align="center">
+    <img src="your-image-url-4.png" alt="Before and After Comparison" width="900">
+  </p>
+  <p align="center"><i><b>The Trust Layer:</b> A side-by-side comparison of the raw AI-generated repo code versus the hardened, secure version suggested by Vigilix AI.</i></p>
+</details>
+
 
 
 <!--
