@@ -22,7 +22,8 @@
 * 🔗 **Live Application** :
   [Click here to experience Vigilix AI!](https://vigilix-ai.vercel.app/)
 * 🎬 **Demo Video** :
-  [Click here to watch the demo!](https://youtu.be/NaViAgM2ebc?si=uUnbxmqlOmDQWM4T)
+  [Click here to watch the demo!](https://youtu.be/d2sYJ2wTPbo?si=TImqoxINlTvhYi7C)
+  
     
 
 ---
