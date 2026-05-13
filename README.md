@@ -19,9 +19,9 @@
 
 ## 🌐 Project Links
 
-* 🔗 **Live Application**
+* 🔗 **Live Application** :
   [https://vigilix-ai.vercel.app/](https://vigilix-ai.vercel.app/)
-* 🎬 **Demo Video**
+* 🎬 **Demo Video** :
   [_in progress_]
     
 
