@@ -19,11 +19,9 @@
 
 ## 🌐 Project Links
 
-* 🔗 **Live Application** : 
-  <a href="https://vigilix-ai.vercel.app/" target="_blank">Click here to experience Vigilix AI!</a>
-* 🎬 **Demo Video** : 
-  <a href="https://youtu.be/NaViAgM2ebc?si=qCfAolSwOH1pUYQN" target="_blank">Click here to watch the demo!</a>
-    
+* 🔗 **Live Application** : [Click here to experience Vigilix AI!](https://vigilix-ai.vercel.app/)
+* 🎬 **Demo Video** : [Click here to watch the demo!](https://youtu.be/NaViAgM2ebc?si=93MOiSKseEwh_AEq)
+
 
 ---
 
