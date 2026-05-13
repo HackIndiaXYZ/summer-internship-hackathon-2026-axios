@@ -254,17 +254,17 @@ GITHUB_TOKEN=your_github_personal_access_token_here
 
 ---
 
-## Roadmap
+## Future Vision & Roadmap : 
 
 Vigilix AI is designed to grow beyond a hackathon prototype into a serious developer security platform.
+- [ ] **Deep AST Analysis** — Transition from regex heuristics to abstract syntax tree parsing for context-aware vulnerability detection.
+- [ ] **CI/CD Integration** — Launch GitHub Actions workflows that automatically block deployments if the repository Trust Score drops below a configurable threshold.
+- [ ] **Automated PR Scanning** — Run background analysis on every pull request, surfacing findings via inline comments directly inside the GitHub review interface.
+- [ ] **Private Repository Support** — Implement OAuth-based GitHub authentication to enable secure scanning with granular, tenant-level access control.
+- [ ] **Dependency Hallucination Graph** — Generate a visual import map cross-referenced against live registry data from npm, PyPI, and Maven to catch AI-generated malicious packages.
+- [ ] **Trust Score Analytics** — Track and visualize historical security posture trends across commits to map repository health over time.
+- [ ] **IDE Integration** — Launch a dedicated VS Code Extension to provide real-time, shift-left Vigilix AI analysis directly in the code editor.
 
-- [ ] **Deep AST Analysis** — Move beyond regex heuristics to parse abstract syntax trees for richer, context-aware detection
-- [ ] **CI/CD Integration** — GitHub Actions workflow that blocks deployment when Trust Score falls below a configurable threshold
-- [ ] **Pull Request Scanning** — Automatic analysis on every PR, with inline comments surfaced directly in the GitHub review interface
-- [ ] **Private Repository Support** — OAuth-based GitHub auth to scan private repos with full access control
-- [ ] **Dependency Hallucination Graph** — Visual map of all imports cross-referenced against npm, PyPI, and Maven
-- [ ] **Trust Score Trends** — Track how a repository's security posture evolves across commits over time
-- [ ] **VS Code Extension** — Real-time Vigilix AI analysis as you code, not just at scan time
 
 ---
 
