@@ -208,6 +208,7 @@ Your repository receives a Trust Score with a clear deployment status. Browse ea
 
 ---
 
+
 ## Privacy-First Design
 
 > **Vigilix AI never stores your source code.** This is not a caveat buried in fine print — it's an architectural commitment.
@@ -222,6 +223,23 @@ Your repository receives a Trust Score with a clear deployment status. Browse ea
 Your code stays yours. Vigilix AI processes it ephemerally and returns only the insights.
 
 ---
+
+⚙️ Technical Deep Dive :
+Vigilix AI operates as a stateless, three-phase analysis pipeline designed to bridge the gap between fast static analysis and slow security audits.
+
+Selective In-Memory Fetching: Uses the GitHub Trees API to selectively fetch source code into RAM. No local cloning, ensuring zero persistence.
+
+Multi-Pass Heuristic Engine: Uses optimized regex patterns to detect hardcoded secrets, dangerous functions (like eval()), and AI-typical "shortcut" patterns.
+
+LLM Enrichment: Raw flags are passed to Gemini 2.5 Flash Lite with a strict JSON Response Schema to generate human-readable "Why" explanations and secure rewrites.
+
+⚠️ Constraints & Scope:
+
+Analysis Depth: Optimized for high-signal pattern matching; deep AST parsing is currently on the roadmap.
+
+Repo Size: Scans are capped at the first 20 source files for sub-10-second response times.
+
+Language Support: Primary focus on JavaScript/TypeScript and Python ecosystems.
 
 ## Tech Stack
 
@@ -316,7 +334,7 @@ Vigilix AI is designed to grow beyond a hackathon prototype into a serious devel
 
 **Team Axios 📡** 
 
-**Yashvi Maharaj**
+**Yashvi Maharaj**  [Solo Developer & Architect]
 
 <br/>
 
