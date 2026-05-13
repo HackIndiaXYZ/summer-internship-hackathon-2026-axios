@@ -11,25 +11,27 @@
   ╚═══╝  ╚═╝ ╚═════╝ ╚═╝╚══════╝╚═╝╚═╝  ╚═╝
 ```
 
-> **Trust infrastructure for AI-assisted development.**
+</div>
 
-*Scan. Score. Ship with confidence.*
+> **Trust infrastructure for AI-assisted development.**
+>
+> *Scan. Score. Ship with confidence.*
 
 ---
 
 ## 🌐 Project Links
 
-* 🔗 **Live Application** : [Click here to experience Vigilix AI!](https://vigilix-ai.vercel.app/)
-* 🎬 **Demo Video** : [Click here to watch the demo!](https://youtu.be/NaViAgM2ebc?si=93MOiSKseEwh_AEq)
+🔗 **Live Application:** [Click here to experience Vigilix AI!](https://vigilix-ai.vercel.app/)
+
+🎬 **Demo Video:** [Click here to watch the demo!](https://youtu.be/NaViAgM2ebc?si=93MOiSKseEwh_AEq)
 
 
----
 
 </div>
 
 ---
 
-## The Problem
+## 🧩 The Problem
 
 AI coding assistants — Copilot, Cursor, ChatGPT, Gemini — are now part of every developer's workflow. They write code fast. But they also:
 
@@ -49,7 +51,7 @@ The result? Developers ship code they don't fully understand into production. An
 
 ---
 
-## Why Vigilix AI
+## 🎯  Why Vigilix AI
 
 There are linters. There are SAST tools. There are dependency scanners. But **NONE** of them are built around the specific failure modes of AI-generated code — **hallucinated** imports, **false** confidence, **shortcut** patterns, and the subtle **erosion** **of code ownership.**
 
@@ -65,7 +67,7 @@ There are linters. There are SAST tools. There are dependency scanners. But **NO
 
 ---
 
-## Core Features
+## ⚡ Core Features
 
 **🛡️ AI Trust Score** 
 
@@ -161,7 +163,7 @@ Paste any public GitHub repository URL. No tokens, no integrations, no configura
 
 ---
 
-## Architecture Overview
+## 🏗️ Architecture Overview
 ```mermaid
 flowchart TD
     A([👤 User]) -->|Pastes GitHub URL| B[Next.js Frontend\nReact · Tailwind · Framer Motion]
@@ -193,7 +195,7 @@ flowchart TD
 
 
 
-## Demo Flow
+## 🎬 Demo Flow
 
 **1 · Paste a GitHub URL**
 Drop any public repository URL into the scanner. No signup. No OAuth. No configuration.
@@ -207,7 +209,7 @@ Your repository receives a Trust Score with a clear deployment status. Browse ea
 ---
 
 
-## Privacy-First Design
+## 🛡️ Privacy-First Design
 
 > **Vigilix AI never stores your source code.** This is not a caveat buried in fine print — it's an architectural commitment.
 
@@ -222,7 +224,7 @@ Your code stays yours. Vigilix AI processes it ephemerally and returns only the 
 
 ---
 
-⚙️ Technical Deep Dive :
+## ⚙️Technical Deep Dive :
 Vigilix AI operates as a stateless, three-phase analysis pipeline designed to bridge the gap between fast static analysis and slow security audits.
 
 Selective In-Memory Fetching: Uses the GitHub Trees API to selectively fetch source code into RAM. No local cloning, ensuring zero persistence.
@@ -231,7 +233,7 @@ Multi-Pass Heuristic Engine: Uses optimized regex patterns to detect hardcoded s
 
 LLM Enrichment: Raw flags are passed to Gemini 2.5 Flash Lite with a strict JSON Response Schema to generate human-readable "Why" explanations and secure rewrites.
 
-⚠️ Constraints & Scope:
+## ⚖️ Constraints & Scope:
 
 Analysis Depth: Optimized for high-signal pattern matching; deep AST parsing is currently on the roadmap.
 
@@ -239,7 +241,7 @@ Repo Size: Scans are capped at the first 20 source files for sub-10-second respo
 
 Language Support: Primary focus on JavaScript/TypeScript and Python ecosystems.
 
-## Tech Stack
+## 💻 Tech Stack
 
 **Frontend**
 - [Next.js 16](https://nextjs.org) — App Router, server components, API routes
@@ -267,7 +269,7 @@ Language Support: Primary focus on JavaScript/TypeScript and Python ecosystems.
 
 ---
 
-## Local Development
+## 📦 Local Development
 
 ### Prerequisites
 
@@ -312,7 +314,7 @@ GITHUB_TOKEN=your_github_personal_access_token_here
 
 ---
 
-## Future Vision & Roadmap : 
+## ⏳ Future Vision & Roadmap : 
 
 Vigilix AI is designed to grow beyond a hackathon prototype into a serious developer security platform.
 - [ ] **Deep AST Analysis** — Transition from regex heuristics to abstract syntax tree parsing for context-aware vulnerability detection.
@@ -326,7 +328,7 @@ Vigilix AI is designed to grow beyond a hackathon prototype into a serious devel
 
 ---
 
-## Made By
+##  Made By
 
 <div align="center">
 
